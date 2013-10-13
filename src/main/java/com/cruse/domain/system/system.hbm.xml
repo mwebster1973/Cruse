@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+		"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!--
+  - Mapping file for the Hibernate implementation of the Clinic interface.
+  --> 
+<hibernate-mapping auto-import="true" default-lazy="false">
+	<class name="com.butter.config.ButterConfig" table="CRUSE_CONFIGURATION">
+		<id name="configParam" column="CODE"/>
+		<property name="configValue" column="VALUE"/>
+		<property name="configDescription" column="DESCRIPTION"/>
+	</class>
+	<class name="com.butter.audit.ButterAudit" table="CRUSE_SYSTEM_AUDIT">	
+		<id name="id" column="ID">
+			<generator class="identity"/>
+		</id>
+		<property name="parentId" column="PARENT"/>
+		<property name="changeDate" column="CHANGE_DATE"/>
+		<property name="changerCDSID" column="CHANGER_CDSID"/>
+		<property name="changeDescription" column="CHANGE_DESCRIPTION"/>
+		<property name="parentType" column="PARENT_TYPE"/>
+		<property name="eventType" column="EVENT_TYPE"/>						
+	</class>
+	<class name="com.butter.search.ButterSearchView" table="CRUSE_USER_VIEW">	
+		<id name="id" column="ID">
+			<generator class="identity"/>
+		</id>
+		<property name="tableId" column="TABLE_ID"/>
+		<property name="cdsid" column="USERNAME"/>
+		<property name="criteriaBlob" column="CRITERIA"/>
+		<property name="searchName" column="SEARCH_NAME"/>
+		<property name="defaultViewString" column="DEFAULT_VIEW_YN"/>
+        <set name="columns" table="CRUSE_USER_VIEW_ATTRIBUTE">
+            <key column="UV_ID"/>
+            <element type="string" column="ATTRIBUTE_NAME"/>
+        </set>
+	</class>
+	
+	<class name="com.butter.news.ButterNews" table="CRUSE_SYSTEM_NEWS">	
+		<id name="id" column="ID">
+			<generator class="identity"/>
+		</id>
+		<property name="startDate" column="START_DATE"/>
+		<property name="endDate" column="END_DATE"/>
+		<property name="headline" column="HEADLINE"/>
+		<property name="summary" column="SUMMARY"/>
+		<property name="content" column="CONTENT"/>
+	</class>	
+	
+	<class name="com.cruse.domain.system.User" table="CRUSE_USER">
+		<id name="userId" column="USERNAME"/>
+		<property name="firstName" column="FORENAME"/>
+		<property name="surname" column="SURNAME"/>
+		<property name="password" column="PASSWORD"/>
+		<property name="active" column="ACTIVE_YN" type="yes_no"/>
+        <set name="roles" table="CRUSE_USER_ROLE" cascade="all-delete-orphan" batch-size="100">
+            <key column="USERNAME"/>
+            <element type="string" column="ROLE_CODE"/>
+        </set>
+        
+	</class>
+	
+</hibernate-mapping>

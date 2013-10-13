@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+		"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!--
+  - Mapping file for the Hibernate implementation of the Clinic interface.
+  --> 
+<hibernate-mapping auto-import="true" default-lazy="false">
+	<class name="com.cruse.domain.ethnic.EthnicEntry" table="ETHNIC">
+		<id name="seqId" column="SEQ_ID">
+			<generator class="identity"/>
+		</id>
+		<many-to-one name="ethnicBackground" class="com.cruse.domain.admin.EthnicBackground">
+			<column name="ETHNIC_ORIGIN"></column>
+		</many-to-one>
+		<many-to-one name="religion" class="com.cruse.domain.admin.Religion">
+			<column name="RELIGEON"></column>
+		</many-to-one>
+		<property name="dateEntererd" column="DATE_ENTERED"/>
+		
+		<many-to-one name="area" class="com.cruse.domain.admin.Area">
+			<column name="area_code"></column>
+		</many-to-one>
+		<many-to-one name="pct" class="com.cruse.domain.admin.Pct">
+			<column name="pct"></column>
+		</many-to-one>
+		<property name="carer" column="carer_yn" type="yes_no"/>
+		<property name="registeredDisabled" column="registered_disabled_yn" type="yes_no"/>
+		<property name="considerDisabled" column="consider_disabled_yn" type="yes_no"/>
+		<many-to-one name="gender" class="com.cruse.domain.admin.Gender">
+			<column name="gender_of_client"></column>
+		</many-to-one>
+		<many-to-one name="ageOfClient" class="com.cruse.domain.admin.Age" >
+			<column name="age_of_client"></column>
+		</many-to-one>		
+	</class>
+</hibernate-mapping>

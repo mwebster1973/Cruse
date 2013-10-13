@@ -1,0 +1,177 @@
+/* GENERIC PAGE ELEMENTS 
+It is possible to set a default style behaviour for a generic HTML tag by simply defining the element name and then the style. 
+This means that the style becomes applied whereever that tag is used, without the need to specify "class=" */
+
+	html {overflow-x: hidden;overflow-y: scroll;}
+	body {font-family: arial;margin-left: 0px;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;background-color: #ffffff;font-size: 0.75em;}
+	img {border: 0px;}
+	input {width:92%;font-size:.95em;font-family: arial;margin: 0px 0px 0px 0px;}
+	select {width:94%;font-size:.9em;font-family: arial;display: inline;margin:  0px 0px 1px 0px;}
+	textarea {dusplay:block;border:1px solid #6699CC;width:93%;font-family: arial;font-size: 0.95em;color: #000000;margin: 0px 0px 0px 0px;}
+	form {display: inline;}
+	hr {color:#000000;height: 1px;}
+
+
+/* FORM ELEMENTS */
+	
+	/* Used to make input boxes shorter than the standard size */
+	.shortFormItem {width:20%;padding:2px;border:1px solid #6699CC;font-size:.95em;font-family: arial;margin: 0px 0px 0px 0px;}
+	.mediumFormItem {width:30%;padding:2px;border:1px solid #6699CC;font-size:.95em;font-family: arial;margin: 0px 0px 0px 0px;}
+	
+
+	/* Used by <JLR:text/> to set the size of the input box */
+	.text {padding:2px;border:1px solid #6699CC;width:92%; }
+
+	/* Classes needed for all checkboxes and radio buttons */
+	.check {width: 1.3em;height:1.3em; margin-bottom:3px; margin-top:2px;}
+	.radio {width: 1.3em;height:1.3em; margin-bottom:3px; margin-top:2px; vertical-align: middle;}
+	/* margins around text to be used in input forms */
+	.spacedText{margin-bottom:4px; margin-top:2px;}
+	
+	/* <JLR:spacer/> related style */
+	.spacerTag {clear:both;line-height:2px;width: 100%;border-bottom: 1px dashed #ccccff;margin-bottom:2px;margin-top:3px;}
+
+	/* Standard button style */
+	.button {padding-left:5px;overflow:visible;padding-right:5px;margin-top:2px;width:auto;font-weight:bold;margin-right:0px;}
+
+	/* Multi select boxes used on search screens etc */
+	.multiSelect td {border-left:1px solid #ccccff;}
+	.multiSelect div {overflow-x:hidden;}
+	
+
+/* ACTION BAR */
+
+	/* Sets the positioning of the row navigator */
+	.rowNavigator {float:left;font-weight:bold;}
+	
+	/* <JLR:actionBar/> related style - topbar refers to the floating bar and topbar2 the static */
+	#topbar{text-align:right;opacity:0.9;filter:alpha(opacity=90);position:absolute;border-bottom: 1px solid black;;border-top: 1px solid black;padding: 5px;padding-left:0px;background-color: #ffffff;width: 99%;visibility: hidden;z-index: 100;padding-right:20px;}
+	#topbar2{text-align:right;opacity:0.9;filter:alpha(opacity=90);border-bottom: 1px solid black;border-top: 1px solid black;padding: 5px;padding-left:0px;background-color: #ffffff;width: 99%;visibility: hidden;z-index: 100;padding-right:20px;}
+
+
+/* HEADERS AND TITLES */
+
+	/* The App title - ie. Fleet Management System in the top header */
+	.app_title {padding-right:20px;padding-top:20px;padding-left:10px;white-space:nowrap;color: #ffffff;font-weight: bold;	font-size: 20px;text-transform: none;}
+	
+	/* The Page title is the red text at the top of each page */
+	.page_title {width:auto;text-transform: capitalize;float: left;font-size: 1.7em;font-weight: bold;color: #ff0000;margin: 7px 0px 3px 0px;text-indent:11px;}
+	
+	/* This is to counter-act where developers have incorrectly used the jlr:label tag within the page title. */
+	.page_title .label {color:#ff0000;}
+
+
+/* SECTION TABS */
+	/* All of the following relates to the styling of the rounded tabs */
+	.tabSection {background:#ffffff;margin: 5px 0px 0px 0px;width: 100%;float: left;height: 23px;}
+	.collapse {position: relative;float: right;margin: 5px 0px 0px 0px;}
+	.expand {position: relative;float: right;margin: 5px 0px 0px 0px;}
+	.rounded {display: block;}
+	.rounded * {display: block;height: 1px;overflow: hidden;font-size: .01em;background: #3E095A}
+	.rounded1 {margin-left: 3px;margin-right: 3px;padding-left: 1px;padding-right: 1px;border-left: 1px solid #a7bdd3;border-right: 1px solid #a7bdd3;background: #668cb2}
+	.rounded2 {margin-left: 1px;margin-right: 1px;padding-right: 1px;padding-left: 1px;border-left: 1px solid #eaeff4;border-right: 1px solid #eaeff4;background: #5983ac}
+	.rounded3 {margin-left: 1px;margin-right: 1px;border-left: 1px solid #5983ac;border-right: 1px solid #5983ac;}
+	.rounded4 {border-left: 1px solid #a7bdd3;border-right: 1px solid #a7bdd3}
+	.rounded5 {border-left: 1px solid #668cb2;border-right: 1px solid #668cb2}
+	.roundedfg {float: left;background: #3E095A;vertical-align: top;height: 15px;padding: 0px 10px 3px 7px;color: #ffffff;font-size: 1.0em;font-weight: bold;}
+	.expander {float: right;vertical-align: top;margin-top: -3px;padding: 1px 5px 0px 0px;font-size: 0px;font-weight: bold;width: auto;}
+	.top_tabs {margin-top: 0px;width: 20em;float: left;white-space: nowrap;font-size:.9em;}
+	.rounded_centre {background-color: #3E095A;height: 18px;}
+	/* controls the positioning of the tab buttons such as "add new" and "edit" */
+	.tabOptions {background:#ffffff;height:2em;relative;float: left;margin-left: 5px;margin-top:-1px;margin-bottom:-2px;}
+
+/* STANDARD TEXT STYLES */
+
+	/* Used for the mandatory field asterisk, referenced from the label tag */
+	.mandatory { color: #ff0000;font-weight:bold;font-family:verdana;}
+	
+	/* Red alert message text that appears at the top of a top */
+	.alert { position: relative;float: left;vertical-align: bottom;padding: 7px 10px 0px 10px;color: #ff0000;font-family: arial;font-weight: bold;height: 10px;text-decoration: none;}
+	
+	/* Sets the font color for the search criteria text */
+	.criteria {color: #003366;}
+	
+	/* Sets the font and position of the date and time display in the nav bar */
+	.date_time {float: right;color: #ffff00;font-weight: bold;width: auto;text-transform: none;vertical-align: middle;font-size: 14px;padding:4px 12px 0px 0px;margin-top:-25px;_margin-top:0px;}
+	
+	/* Sets the font and style of the back link at the top right of the page */
+	.go_back {text-transform: capitalize;width:auto;font-weight:bold;font-size: 1.1em;display: block;float: right;margin: 5px 4px -10px 0px;color: #009933;background-color: #ffffff;padding: 5px;border:0px solid #ccccff;}
+	
+	/* This is the style used by the <JLR:label/> tag */
+	.label {color:#003366;font-weight:bold;}
+	
+	/* Used to format the email body content in automated system emails */
+	.message {color:#006600;font-weight:bold; font-size:12px;display:inline;}
+	
+	/* Applied as <span class="status"> Status </span> , surrounding the output of a status on a details page */
+	.status {color:#336699;font-weight:bold;}
+	
+	.charMax {}
+
+
+/* GENERAL CONTAINERS */
+
+	/* These are the containing divs around the top header / nav bar / main body and footer
+	They are referenced from the layout tempate and also the <JLR:pageContainer/> tag */
+	.header_container {background-color: #3E095A;background-repeat: repeat-y;vertical-align: middle;text-align: left;height: 56px;width: 100%;float: left;}
+	.navbar_container {	margin-left:-6px;text-decoration : none;	background-image: url(../images/lev0_bg1.gif);background-color: #ffffff;font-size:13px;border-bottom: 1px solid #ffffff;height: 22px;width: auto;background-color: #A887BA;border-top: 1px solid #ffffff;margin-bottom:3px;}
+	.main_body {float: left;padding:0px 10px 0px 10px;clear: both;width: 98%;margin-bottom:30px;}
+	.footer {background:#fafafa;font-size:12px;clear: both;width: 100%;margin-top:8px;text-align: center;padding: 3px 0px 3px 0px;border-top: 1px solid #eeeeee;border-bottom: 1px solid #eeeeee;color: #999999;}
+
+/* PAGING */
+
+	/* styles controlling the paging left/right and page count */
+	.pagingleft {float: left;width: auto;}
+	.pagingcenter {float: left;margin: 6px 5px 0px 5px;width: auto;text-align: center;color: #000000;}
+	.pagingright {float: left;width: auto;text-align: right;}
+	.pagelinks {width:50%;white-space:nowrap;font-size:1.2em;color:#ff0000;  margin: 10px 0px 0px 0px;text-align:left;height:30px;}
+	.pagelinks img {vertical-align: middle;}
+
+
+/* LINKS */
+	/* The default setting for all the link of the site. */
+	a:link {color: #009933;}a:visited {color: #009933;}a:active {color: #009933;}a:hover {color: #ff0000;}
+
+
+/* MISC */
+	.hide {display: none;}
+	.show {display: block;}
+	.htmlerrors {margin-bottom: 10px;}
+
+/* CORE JLR TAGS */
+	/* These are all used for the layout and settings of the 3 main section type - edit/view/results */
+	.dataView  {clear:both;padding-left:6px;border-top: 1px solid #ccccff;word-wrap:break-word;font-size:1em;padding-top:2px;padding-bottom:2px;float: left;height: auto;width: 99%;background-color: #F4E6F6;border-right: 1px solid #ccccff;border-left: 1px solid #ccccff;border-bottom: 1px solid #ccccff;}
+	.dataEdit  {padding-left:6px;border-top: 1px solid #ccccff;word-wrap:break-word;font-size:1em;padding-top:4px;padding-bottom:4px;float: left;height: auto;width: 99%;background-color: #F4E6F6;border-right: 1px solid #ccccff;border-left: 1px solid #ccccff;border-bottom: 1px solid #ccccff;}
+	.dataTable  {clear:both;width:100%;}
+	.filterBuilder {float: left;padding: 0px -5px 5px 5px;height: auto;width: 100%;}
+	.dataCustom {overflow:scroll;float: left;padding: 0px -5px 5px 5px; max-height:330px;width: 100%;}
+	.testModeResults .dataCustom {overflow:scroll;float: left;padding: 0px -5px 5px 5px;height: 355px;width: 100%;}
+	.nocustom .dataCustom th {white-space:nowrap;border-top:0px solid #ccccff;}
+	.nocustom .dataCustom {max-height: 355px;}
+	.dataCustom .button {width:100px;}
+	.dataCustom th {padding: 1px 0px 1px 5px;text-align:left;background:#fafafa;white-space:nowrap;border-top:1px solid #ccccff;border-bottom:1px solid #ccccff;border-left:1px solid #ccccff;}
+	.dataCustom th a {font-size:1em;white-space:nowrap;}
+	.dataCustom tr  {background-color: #F4E6F6;}
+	.dataCustom td {font-size:.9em;white-space:nowrap;line-height:1.1em;}
+	.dataTable tr  {background-color: #F4E6F6;}
+	.dataTable td  {font-size:.9em;text-decoration: none;font-weight: normal;line-height:1.1em;}
+	.dataTable th  {border-top: 1px solid #ccccff;font-family:arial;font-size:.88em;text-decoration: none;border-left:1px solid #ccccff;border-bottom:1px solid #ccccff;background-color:#fafafa;text-align:left;color:#000000;text-indent:0px;padding: 1px 0px 1px 5px;width:auto;}
+	.dataTable .order1 {background-position: right;background-image: url(../images/arrow_up.gif);background-repeat: no-repeat; z-index:0;}
+	.dataTable .order2 {background-position: right;background-image: url(../images/arrow_down.gif);background-repeat: no-repeat; z-index:0;}
+	.dataTableCell {border-bottom: 1px solid #ccccff;font-weight: normal;padding: 2px 5px 2px 5px;text-align: left;color: #000000;text-indent: 0px;border-left: 1px solid #ccccff;vertical-align: middle;}
+	.dataTableCellOver {color:#009933;border-bottom: 1px solid #ccccff;font-weight: none;padding: 2px 5px 2px 5px;text-align: left;text-indent: 0px;border-left: 1px solid #ccccff;vertical-align: middle;background-color: #ffffcc;cursor: pointer;}
+
+	/* adjsutment from the norm for the checklist pages */
+	.checkLayout .dataEdit {margin-top:0px;background:#ffffff;}
+
+
+/* These are used by the drag and drop checklist section */
+
+	ul.draglist {display:list-item;padding:5px; background: #ffffcc;border: 1px solid #ccccff;font-weight:bold; height:15px;color:#003366;}
+	ul.draglist_alt {display:list-item;padding:5px;	background-color: #F4E6F6; font-weight:bold; color:#003366;	}
+	ul.draglist li {cursor: move;width:100%;list-style:decimal;}
+	ul.draglist_alt li {cursor: move;list-style:decimal;padding:3px;}
+	#user_actions {float: right; }
+
+/* no longer used as this was proving too difficult to maintain.
+.crumbTrail {display:none;color: #999999;font-size:11px;padding-left:12px;padding-top:5px;width:100%;clear:both;}*/

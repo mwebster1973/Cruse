@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"	
+	xmlns:tx="http://www.springframework.org/schema/tx"   
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx
+        classpath:/org/springframework/transaction/config/spring-tx-3.0.xsd">
+	
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<bean id="propertyConfigurer"
+	   class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	 <property name="location">
+	  <value>/META-INF/MANIFEST.MF</value>
+	 </property>
+	</bean>
+	
+	<bean id="config" class="com.cruse.Config">
+		<constructor-arg><ref bean="configDao"/></constructor-arg> 
+		<property name="version" value="1.0"/>	
+		<property name="adminDao" ref="adminDao"></property>
+		<property name="gpDao" ref="gpDao"></property>
+	</bean>
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+	   <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+	   <property name="url" value="jdbc:mysql://localhost:3306/cruseprod"/>
+	   <property name="username" value="cruse"/>
+	   <property name="password" value="cruse"/>
+	</bean>
+	
+	<bean id="mySessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+	    <property name="dataSource" ref="dataSource"/>
+	    <property name="mappingResources">
+	      <list>
+			<value>com/cruse/domain/system/system.hbm.xml</value>
+			<value>com/cruse/domain/admin/admin.hbm.xml</value>
+			<value>com/cruse/domain/ethnic/ethnic.hbm.xml</value>
+			<value>com/cruse/domain/referral/referral.hbm.xml</value>
+			<value>com/cruse/domain/group/group.hbm.xml</value>
+	      </list>
+	    </property>
+	    <property name="hibernateProperties">
+	    <props>
+    	    <!-- properties chopped for space -->
+        	<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+        	<prop key="hibernate.show_sql">true</prop>        	
+	    </props>
+	    </property>
+	</bean>
+	
+	<bean id="dataManager" class="com.cruse.persistence.HibernateDataManager">
+   		<property name="sessionFactory" ref="mySessionFactory"/>
+    </bean>
+    
+    <bean id="auditDao" class="com.cruse.persistence.system.hibernate.HibernateAuditDao">
+		<property name="sessionFactory" ref="mySessionFactory"/>				
+	</bean>	
+
+    <bean id="configDao" class="com.cruse.persistence.system.hibernate.HibernateConfigDao">
+		<property name="sessionFactory" ref="mySessionFactory"/>
+		<property name="auditDao" ref="auditDao"/>
+    </bean>
+    
+    <bean id="groupSessionDao" class="com.cruse.persistence.group.hibernate.HibernateGroupSessionDao">
+		<property name="sessionFactory" ref="mySessionFactory"/>
+		<property name="auditDao" ref="auditDao"/>
+    </bean>
+    
+    <bean id="newsDao" class="com.cruse.persistence.system.hibernate.HibernateNewsDao">
+   		<property name="sessionFactory" ref="mySessionFactory"/>
+   		<property name="auditDao" ref="auditDao"/>
+    </bean>
+    
+    <bean id="searchViewDao" class="com.cruse.persistence.system.hibernate.HibernateSearchViewDao">
+		<property name="sessionFactory" ref="mySessionFactory"/>
+		<property name="auditDao" ref="auditDao"/>
+    </bean>
+    
+    <bean id="ethnicEntryDao" class="com.cruse.persistence.ethnic.hibernate.HibernateEthnicEntryDao">
+		<property name="sessionFactory" ref="mySessionFactory"/>
+		<property name="auditDao" ref="auditDao"/>
+    </bean>
+
+    <bean id="referralDao" class="com.cruse.persistence.referral.hibernate.HibernateReferralDao">
+		<property name="sessionFactory" ref="mySessionFactory"/>
+		<property name="auditDao" ref="auditDao"/>
+    </bean>
+    
+    <bean id="userDao" class="com.cruse.persistence.system.hibernate.HibernateUserDao">		
+		<property name="sessionFactory" ref="mySessionFactory"/>
+		<property name="auditDao" ref="auditDao"/>		
+    </bean>
+    
+    <bean id="adminDao" class="com.cruse.persistence.admin.hibernate.HibernateAdminDao">
+   		<property name="sessionFactory" ref="mySessionFactory"/>
+   		<property name="auditDao" ref="auditDao"/>	
+    </bean>
+    
+    <bean id="gpDao" class="com.cruse.persistence.admin.hibernate.HibernateGPDao">
+   		<property name="sessionFactory" ref="mySessionFactory"/>
+   		<property name="auditDao" ref="auditDao"/>	
+    </bean>
+    
+    <bean id="adminService" class="com.cruse.service.AdminServiceImpl">
+		<property name="adminDao" ref="adminDao"/>
+		<property name="gpDao" ref="gpDao"/>		
+		<property name="config" ref="config"/>	
+				
+    </bean>
+    
+    <bean id="groupSessionService" class="com.cruse.service.GroupSessionServiceImpl">
+		<property name="dao" ref="groupSessionDao"/>	
+    </bean>
+
+    <bean id="systemService" class="com.cruse.service.SystemServiceImpl">
+		<property name="configDao" ref="configDao"/>
+		<property name="auditDao" ref="auditDao"/>		
+		<property name="newsDao" ref="newsDao"/>		
+		<property name="searchViewDao" ref="searchViewDao"/>				
+		<property name="userDao" ref="userDao"/>
+        <property name="config" ref="config"/> 				
+    </bean>
+    
+    <bean id="ethnicService" class="com.cruse.service.EthnicServiceImpl">
+		<property name="ethnicEntryDao" ref="ethnicEntryDao"/>
+		<property name="config" ref="config"/>
+    </bean>
+    
+    <bean id="referralService" class="com.cruse.service.ReferralServiceImpl">
+		<property name="referralDao" ref="referralDao"/>
+		<property name="config" ref="config"/>
+    </bean>
+  
+  <tx:annotation-driven transaction-manager="txManager"/>
+  
+  <!-- similarly, don't forget the PlatformTransactionManager -->
+  <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	  <property name="dataSource" ref="dataSource"/>
+  </bean>
+		
+</beans>

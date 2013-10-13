@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+		"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!--
+  - Mapping file for the Hibernate implementation of the Clinic interface.
+  --> 
+<hibernate-mapping auto-import="true" default-lazy="false">
+	<class name="com.cruse.domain.referral.Referral" table="REFERRAL">
+		<id name="id" column="referral_id">
+			<generator class="identity"/>
+		</id>
+		<property name="clientInitials" column="client_initials"/>
+		<property name="staffInitials" column="staff_initials"/>	
+		<property name="referralDate" column="referral_date"/>	
+		<property name="referralNo" column="referral_no"/>
+		<property name="closureDate" column="closure_date"/>
+		
+		<many-to-one name="contactBy"  class="com.cruse.domain.admin.ContactBy">
+			<column name="contact_by"></column>
+		</many-to-one>
+		
+		<many-to-one name="causeOfDeath" class="com.cruse.domain.admin.CauseOfDeath">
+			<column name="cause_of_death"></column>
+		</many-to-one>
+		
+		<many-to-one name="bereavedOf" class="com.cruse.domain.admin.BereavedOf">
+			<column name="bereaved_of"></column>
+		</many-to-one>
+
+        <property name="multipleLoss" column="multiple_loss" type="yes_no"/>
+				
+		<many-to-one name="lengthOfBereavement" class="com.cruse.domain.admin.LengthOfBereavement">
+			<column name="length_of_bev"></column>
+		</many-to-one>
+		
+		<many-to-one name="gender" class="com.cruse.domain.admin.Gender">
+			<column name="gender_of_client"></column>
+		</many-to-one>
+		
+		<many-to-one name="ageOfClient" class="com.cruse.domain.admin.Age">
+			<column name="age_of_client"></column>
+		</many-to-one>
+		
+		<many-to-one name="hearOfCruse" class="com.cruse.domain.admin.HearOfCruse">
+			<column name="hear_of_cruse"></column>
+		</many-to-one>
+
+		<many-to-one name="area" class="com.cruse.domain.admin.Area">
+			<column name="area_code"></column>
+		</many-to-one>
+		<many-to-one name="pct" class="com.cruse.domain.admin.Pct">
+			<column name="pct"></column>
+		</many-to-one>
+		
+		<property name="enquiryOutcome" column="enquiry_outcome"/>	
+		<property name="updatedDate" column="updated_date"/>	
+		
+		<property name="carer" column="carer_yn" type="yes_no"/>
+		<property name="preBereavement" column="pre_bereavement_yn" type="yes_no"/>
+		<property name="homeVisit" column="home_visit_yn" type="yes_no"/>
+		<property name="numberOfSessions" column="number_of_sessions"/>
+		<many-to-one name="outpost" class="com.cruse.domain.admin.Outpost">
+			<column name="outpost_ref"></column>
+		</many-to-one>
+		<many-to-one name="ending" class="com.cruse.domain.admin.Ending">
+			<column name="ending_ref"></column>
+		</many-to-one>
+		<property name="comments" column="comments"/>
+		<property name="allocationDate" column="allocation_date"/>
+		<property name="clientName" column="client_name"/>
+		<property name="clientAddress" column="client_address"/>
+		<property name="counsellor" column="counsellor"/>
+		
+		<property name="clientTelephoneNo" column="telephone_number"/>
+		<property name="firstAppointmentDate" column="first_appointment_date"/>
+		<property name="firstOngoingAppointmentDate" column="first_ongoing_appointment_date"/>
+		
+		<many-to-one name="placeOfDeath" class="com.cruse.domain.admin.PlaceOfDeath">
+			<column name="place_of_death"></column>
+		</many-to-one>
+		
+		<many-to-one name="clientResidence" class="com.cruse.domain.admin.ClientResidence">
+			<column name="client_residence"></column>
+		</many-to-one>
+		
+		
+		<property name="email" column="email"/>
+		<property name="mobilePhoneNumber" column="mobile_phone_number"/>
+		<property name="workPhoneNumber" column="work_phone_number"/>
+		
+		<set name="groups" inverse="false" cascade="all-delete-orphan" lazy="true">
+        	<key column="referral_id"/>
+        	<one-to-many class="com.cruse.domain.referral.ReferralGroup"/>
+    	</set>    	
+		<property name="telephoneSupport" column="telephone_support_yn" type="yes_no"/>
+		<property name="coreCompleted" column="core_completed_yn" type="yes_no"/>
+		<property name="service" column="service_yn" type="yes_no"/>
+		
+		<many-to-one name="gp" class="com.cruse.domain.admin.GP">
+			<column name="gp_id"></column>
+		</many-to-one>
+		<property name="gpNotes" column="gp_notes"/>
+		
+		<bag name="coreDates" table="REFERRAL_CORE_DATES" order-by="CORE_DATE" lazy="true">
+			<key column="REFERRAL_ID"></key>
+			<element column="CORE_DATE" type="date"></element>
+		</bag>
+		
+		<bag name="dnaDates" table="REFERRAL_DNA_DATES" order-by="DNA_DATE" lazy="true">
+			<key column="REFERRAL_ID"></key>
+			<element column="DNA_DATE" type="date"></element>
+		</bag>
+		
+		<bag name="cancellationDates" table="REFERRAL_CANCEL_DATES" order-by="CANCEL_DATE" lazy="true">
+			<key column="REFERRAL_ID"></key>
+			<element column="CANCEL_DATE" type="date"></element>
+		</bag>
+		
+		
+	</class>
+	
+	<class name="com.cruse.domain.referral.ReferralGroup" table="REFERRAL_GROUP">
+		<id name="id" column="id">
+			<generator class="identity"/>
+		</id>
+		<many-to-one name="referral" class="com.cruse.domain.referral.Referral">
+			<column name="referral_id"></column>
+		</many-to-one>
+		<many-to-one name="group" class="com.cruse.domain.group.Group">
+			<column name="group_code"></column>
+		</many-to-one>
+		<property name="ending" column="ending"/>
+		<property name="status" column="ref_status"/>	
+		<property name="joinedDate" column="joined_date"/>	
+		<property name="closedDate" column="closed_date"/>
+		<property name="notes" column="notes"/>
+		<property name="waitingListDate" column="waiting_list_date"/>	
+		
+	</class>
+</hibernate-mapping>
+

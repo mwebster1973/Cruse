@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+		"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!--
+  - Mapping file for the Hibernate implementation of the Clinic interface.
+  --> 
+<hibernate-mapping auto-import="true" default-lazy="false">
+	<class name="com.cruse.domain.admin.Age" table="AGE">
+		<id name="code" column="CODE"/>
+		<property name="description" column="DESCRIPTION"/>
+		<property name="sequence" column="SEQUENCE"/>
+	</class>
+
+	<class name="com.cruse.domain.admin.Area" table="AREA">
+		<id name="code" column="CODE"/>
+		<property name="description" column="DESCRIPTION"/>
+		<property name="sequence" column="SEQUENCE"/>
+		<many-to-one name="pct" class="com.cruse.domain.admin.Pct">
+			<column name="PCT"></column>
+		</many-to-one>
+		
+	</class>
+	<class name="com.cruse.domain.admin.BereavedOf" table="BEREAVED_OF">
+		<id name="code" column="CODE"/>
+		<property name="description" column="DESCRIPTION"/>
+		<property name="sequence" column="SEQUENCE"/>
+	</class>
+	<class name="com.cruse.domain.admin.CauseOfDeath" table="CAUSE_OF_DEATH">
+		<id name="code" column="CODE"/>
+		<property name="description" column="DESCRIPTION"/>
+		<property name="sequence" column="SEQUENCE"/>
+	</class>
+	<class name="com.cruse.domain.admin.ContactBy" table="CONTACT">
+		<id name="code" column="CODE"/>
+		<property name="description" column="DESCRIPTION"/>
+		<property name="sequence" column="SEQUENCE"/>
+	</class>
+	<class name="com.cruse.domain.admin.EthnicBackground" table="ETHNIC_BACK">
+		<id name="code" column="CODE"/>
+		<property name="description" column="DESCRIPTION"/>
+		<property name="sequence" column="SEQUENCE"/>
+	</class>
+	<class name="com.cruse.domain.admin.Gender" table="GENDER">
+		<id name="code" column="CODE"/>
+		<property name="description" column="DESCRIPTION"/>
+		<property name="sequence" column="SEQUENCE"/>
+	</class>
+		<class name="com.cruse.domain.admin.HearOfCruse" table="HEAR_OF_CRUSE">
+		<id name="code" column="CODE"/>
+		<property name="description" column="DESCRIPTION"/>
+		<property name="sequence" column="SEQUENCE"/>
+	</class>
+		<class name="com.cruse.domain.admin.LengthOfBereavement" table="LENGTH_OF_BEREAVEMENT">
+		<id name="code" column="CODE"/>
+		<property name="description" column="DESCRIPTION"/>
+		<property name="sequence" column="SEQUENCE"/>
+	</class>
+	<class name="com.cruse.domain.admin.Religion" table="RELIGION">
+		<id name="code" column="CODE"/>
+		<property name="description" column="DESCRIPTION"/>
+		<property name="sequence" column="SEQUENCE"/>
+	</class>
+	<class name="com.cruse.domain.admin.Pct" table="PCT">
+		<id name="code" column="CODE"/>
+		<property name="description" column="DESCRIPTION"/>
+		<property name="sequence" column="SEQUENCE"/>
+	</class>
+	<class name="com.cruse.domain.admin.Outpost" table="OUTPOST">
+		<id name="code" column="CODE"/>
+		<property name="description" column="DESCRIPTION"/>
+		<property name="sequence" column="SEQUENCE"/>
+	</class>
+	<class name="com.cruse.domain.admin.Ending" table="ENDING">
+		<id name="code" column="CODE"/>
+		<property name="description" column="DESCRIPTION"/>
+		<property name="sequence" column="SEQUENCE"/>
+	</class>
+	<class name="com.cruse.domain.admin.PlaceOfDeath" table="PLACE_OF_DEATH">
+		<id name="code" column="CODE"/>
+		<property name="description" column="DESCRIPTION"/>
+		<property name="sequence" column="SEQUENCE"/>
+	</class>	
+	<class name="com.cruse.domain.admin.ClientResidence" table="CLIENT_RESIDENCE">
+		<id name="code" column="CODE"/>
+		<property name="description" column="DESCRIPTION"/>
+		<property name="sequence" column="SEQUENCE"/>
+	</class>
+	<class name="com.cruse.domain.admin.GP" table="GP">
+		<id name="id" column="ID">
+			<generator class="identity"/>
+		</id>		
+		<property name="surgeryName" column="SURGERY_NAME"/>
+		<property name="postCode" column="POSTCODE"/>	
+		<property name="telephoneNumber" column="TELEPHONE_NUMBER"/>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+		"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping auto-import="true" default-lazy="false">
+
+	<class name="com.cruse.domain.group.Group" table="GROUPS">
+		<id name="code" column="CODE"/>
+		<property name="description" column="DESCRIPTION"/>
+		<property name="sequence" column="SEQUENCE"/>
+		
+		<set name="referrals" inverse="true" lazy="true">
+        	<key column="group_code"/>
+        	<one-to-many class="com.cruse.domain.referral.ReferralGroup"/>
+    	</set>
+    	<set name="sessions" inverse="true" lazy="true">
+        	<key column="group_code"/>
+        	<one-to-many class="com.cruse.domain.group.GroupSession"/>
+    	</set>
+    	
+    	
+	</class>
+	
+	<class name="com.cruse.domain.group.GroupSession" table="GROUP_SESSION">
+		<id name="id" column="id">
+			<generator class="identity"/>
+		</id>
+		
+		<property name="sessionDate" column="session_date"/>
+		<property name="attendedCount" column="attended_count"/>
+		<property name="volenterCount" column="volenter_count"/>
+		<property name="notes" column="notes"/>
+		
+		<many-to-one name="group" class="com.cruse.domain.group.Group">
+			<column name="group_code"></column>
+		</many-to-one>
+	</class>
+	</hibernate-mapping>
+
